@@ -1,5 +1,5 @@
 {
-    "permissions": {
+  "permissions": {
     "allow": [
       "Edit(*)",
       "Write(*)",
@@ -53,7 +53,16 @@
   },
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Admiring Shayan's code", "Learning from Shayan", "Studying Shayan's patterns", "Copying Shayan's genius", "Thanking Shayan deeply", "Absorbing Shayan's wisdom", "Following Shayan's lead", "Praising Shayan's repo"]
+    "verbs": [
+      "Admiring Shayan's code",
+      "Learning from Shayan",
+      "Studying Shayan's patterns",
+      "Copying Shayan's genius",
+      "Thanking Shayan deeply",
+      "Absorbing Shayan's wisdom",
+      "Following Shayan's lead",
+      "Praising Shayan's repo"
+    ]
   },
   "spinnerTipsOverride": {
     "tips": [
@@ -62,7 +71,6 @@
     ],
     "excludeDefault": true
   },
-  
   "plansDirectory": "./reports",
   "outputStyle": "Explanatory",
   "statusLine": {
@@ -93,6 +101,77 @@
             "statusMessage": "PreToolUse"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/flow-dispatcher.sh",
+            "timeout": 7
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-branch-taxonomy.sh",
+            "timeout": 7,
+            "if": "Bash(git *)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-git-workflow.sh",
+            "timeout": 7,
+            "if": "Bash(git *)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-branch.sh",
+            "timeout": 7,
+            "if": "Bash(git *)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-branch.sh",
+            "timeout": 7,
+            "if": "Bash(gh api*)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-commit-msg.sh",
+            "timeout": 7,
+            "if": "Bash(git commit*)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-destructive.sh",
+            "timeout": 7
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-blast-radius.sh",
+            "timeout": 7,
+            "if": "Bash(git commit*)"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-pr-review.sh",
+            "timeout": 7
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-files.sh",
+            "timeout": 7
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-tool-use/guard-uncommitted.sh",
+            "timeout": 7
+          }
+        ]
       }
     ],
     "PermissionRequest": [
@@ -106,6 +185,16 @@
             "statusMessage": "PermissionRequest"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/permission-request/auto-allow-readonly.sh",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -117,6 +206,46 @@
             "timeout": 5000,
             "async": true,
             "statusMessage": "PostToolUse"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/post-tool-use/auto-format.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/post-tool-use/auto-lint.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/post-tool-use/auto-checkpoint.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/post-tool-use/audit-trail.sh",
+            "timeout": 3
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/post-tool-use/pr-review-trigger.sh",
+            "timeout": 5
           }
         ]
       }
@@ -145,6 +274,16 @@
             "statusMessage": "UserPromptSubmit"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/user-prompt-submit/warn-production.sh",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Notification": [
@@ -158,6 +297,16 @@
             "statusMessage": "Notification"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/notification/sound-alert.sh",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Stop": [
@@ -169,6 +318,31 @@
             "timeout": 5000,
             "async": true,
             "statusMessage": "Stop"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/stop/squash-checkpoints.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/stop/require-tests.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/stop/cost-tracker.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/stop/auto-sync.sh",
+            "timeout": 10
           }
         ]
       }
@@ -211,6 +385,16 @@
             "statusMessage": "PreCompact"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/pre-compact/backup-transcript.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -223,6 +407,16 @@
             "async": true,
             "once": true,
             "statusMessage": "SessionStart"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/bardi/Projetos/claude-code-best-practice/.claude/hooks/hapai/session-start/load-context.sh",
+            "timeout": 10
           }
         ]
       }
